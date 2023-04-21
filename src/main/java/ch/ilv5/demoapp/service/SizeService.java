@@ -23,13 +23,13 @@ public class SizeService {
                 .orElseThrow(() -> new EntityNotFoundException());
     }
 
-    public MessageResponse deleteDepartment(Long id) {
+    public MessageResponse deleteSize(Long id) {
         sizeRepository.deleteById(id);
-        return new MessageResponse("Department " + id + " deleted");
+        return new MessageResponse("Size " + id + " deleted");
     }
 
-    public Size insertDepartment(Size department) {
-        return sizeRepository.save(department);
+    public Size insertSize(Size size) {
+        return sizeRepository.save(size);
     }
 
     public Size updateSize(Size size, Long id) {
