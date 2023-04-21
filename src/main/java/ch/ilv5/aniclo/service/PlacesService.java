@@ -1,8 +1,8 @@
-package ch.ilv5.demoapp.service;
+package ch.ilv5.aniclo.service;
 
-import ch.ilv5.demoapp.base.MessageResponse;
-import ch.ilv5.demoapp.model.Places;
-import ch.ilv5.demoapp.repository.PlacesRepository;
+import ch.ilv5.aniclo.base.MessageResponse;
+import ch.ilv5.aniclo.model.Places;
+import ch.ilv5.aniclo.repository.PlacesRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class PlacesService {
                 .orElseThrow(() -> new EntityNotFoundException());
     }
 
-    public MessageResponse deletePlace(Long id) {
+    public MessageResponse deletePlaceById(Long id) {
         placesRepository.deleteById(id);
         return new MessageResponse("Place " + id + " deleted");
     }
@@ -32,7 +32,7 @@ public class PlacesService {
         return placesRepository.save(places);
     }
 
-    public Places updatePlace(Places place, Long id) {
+    public Places updatePlaceById(Places place, Long id) {
         return placesRepository.findById(id)
                 .map(placesDB -> {
                     placesDB.setPlz(place.getPlz());

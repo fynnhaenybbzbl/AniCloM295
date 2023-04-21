@@ -1,8 +1,8 @@
-package ch.ilv5.demoapp.service;
+package ch.ilv5.aniclo.service;
 
-import ch.ilv5.demoapp.base.MessageResponse;
-import ch.ilv5.demoapp.model.Size;
-import ch.ilv5.demoapp.repository.SizeRepository;
+import ch.ilv5.aniclo.base.MessageResponse;
+import ch.ilv5.aniclo.model.Size;
+import ch.ilv5.aniclo.repository.SizeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class SizeService {
         return sizeRepository.save(size);
     }
 
-    public Size updateSize(Size size, Long id) {
+    public Size updateSizeById(Size size, Long id) {
         return sizeRepository.findById(id)
                 .map(sizeDB -> {
                     sizeDB.setEu(size.getEu());

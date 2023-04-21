@@ -1,6 +1,6 @@
-package ch.ilv5.demoapp.repository;
+package ch.ilv5.aniclo.repository;
 
-import ch.ilv5.demoapp.model.Places;
+import ch.ilv5.aniclo.model.Places;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

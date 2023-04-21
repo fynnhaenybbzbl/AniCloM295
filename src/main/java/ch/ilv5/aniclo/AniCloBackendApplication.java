@@ -1,4 +1,4 @@
-package ch.ilv5.demoapp;
+package ch.ilv5.aniclo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

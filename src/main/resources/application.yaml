@@ -1,3 +1,5 @@
+server:
+  port: 9090
 spring:
   jpa:
     show-sql: true
@@ -9,3 +11,9 @@ spring:
     username: postgres
     password: 1234
     driverClassName: org.postgresql.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/ILV
+

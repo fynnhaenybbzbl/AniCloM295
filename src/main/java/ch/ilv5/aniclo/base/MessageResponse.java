@@ -1,4 +1,4 @@
-package ch.ilv5.demoapp.base;
+package ch.ilv5.aniclo.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
