@@ -1,25 +1,22 @@
 package ch.ilv5.aniclo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 @Data
-@AllArgsConstructor
 @Entity
 @Validated
+@NoArgsConstructor
+@AllArgsConstructor
 public class Places {
     @Id
     @GeneratedValue
     private Long id;
 
-    @jakarta.validation.constraints.Size(max = 50)
-    @NotEmpty
     @Column(nullable = false)
     private int plz;
 
@@ -35,4 +32,6 @@ public class Places {
 
     @Column(nullable = false)
     private int strassennummer;
+
+
 }

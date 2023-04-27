@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@SecurityRequirement(name = "bearerAuth") //Todo: add me
+@SecurityRequirement(name = "bearerAuth")
 public class PlacesController {
     @Autowired
     private PlacesService placesService;
 
     @GetMapping("/places")
-    @RolesAllowed(Roles.Read) //Todo: add me
+    @RolesAllowed(Roles.Read)
     public ResponseEntity<List<Places>> getAll() {
         List<Places> result = placesService.getAll();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/places{id}")
+    @GetMapping("/places/{id}")
+    @RolesAllowed(Roles.Read)
     public ResponseEntity<Places> getById(@PathVariable Long id) {
         Places place = placesService.getById(id);
         return new ResponseEntity<>(place, HttpStatus.OK);
@@ -44,12 +45,14 @@ public class PlacesController {
     }
 
     @PostMapping("/postPlace")
+    @RolesAllowed(Roles.Admin)
     public ResponseEntity<Places> addNewPlace(@Valid @RequestBody Places place) {
         Places savedPlace = placesService.insertPlace(place);
         return new ResponseEntity<>(savedPlace, HttpStatus.OK);
     }
 
     @PutMapping("/updatePlace/{id}")
+    @RolesAllowed({Roles.Admin, Roles.Update})
     public ResponseEntity<Places> updatePlaceById(@Valid @RequestBody Places place, @PathVariable Long id) {
         Places savedPlace = placesService.updatePlaceById(place, id);
         return new ResponseEntity<>(savedPlace, HttpStatus.OK);
