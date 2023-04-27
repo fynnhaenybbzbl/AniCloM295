@@ -19,7 +19,7 @@ public class DBTest {
 
     @Test
     void insertPlace() {
-        Places places = this.placesRepository.save(new Places(1L, 12, "asdas", "sad", 1));
+        Places places = this.placesRepository.save(new Places(12, "asdas", "sad", 1));
         Assertions.assertNotNull(places.getId());
     }
 }

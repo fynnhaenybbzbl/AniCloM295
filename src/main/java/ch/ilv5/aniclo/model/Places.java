@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 @Entity
 @Validated
 @NoArgsConstructor
-@AllArgsConstructor
 public class Places {
     @Id
     @GeneratedValue
@@ -34,4 +33,10 @@ public class Places {
     private int strassennummer;
 
 
+    public Places(int plz, String ortsname, String strasse, int strassennummer) {
+        this.plz = plz;
+        this.ortsname = ortsname;
+        this.strasse = strasse;
+        this.strassennummer = strassennummer;
+    }
 }

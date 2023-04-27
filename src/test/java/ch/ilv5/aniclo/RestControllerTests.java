@@ -40,8 +40,8 @@ class RestControllerTests {
 
     @BeforeAll
     void setup() {
-        this.placesRepository.save(new Places(1L, 213, "asd", "das", 2));
-        this.placesRepository.save(new Places(2L, 213, "asd", "asd", 213));
+        this.placesRepository.save(new Places(213, "asd", "das", 2));
+        this.placesRepository.save(new Places(213, "asd", "asd", 213));
     }
 
     @Test
