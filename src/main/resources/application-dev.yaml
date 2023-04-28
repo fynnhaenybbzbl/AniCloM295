@@ -1,15 +1,13 @@
 server:
   port: 9090
 spring:
-  profiles:
-    active: dev
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5432/AniCloDB
+    url: jdbc:postgresql://localhost:5432/AniCloTestDB
     username: postgres
     password: 1234
     driverClassName: org.postgresql.Driver
