@@ -4,6 +4,7 @@ import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.security.Roles;
 import ch.ilv5.aniclo.service.ColourService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -20,6 +21,7 @@ public class ColourController {
     @Autowired
     private ColourService colourService;
 
+    @Operation(summary = "Get all Colours")
     @GetMapping("/colour")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<List<Colour>> getAll() {
@@ -27,6 +29,7 @@ public class ColourController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get Colour by ID")
     @GetMapping("/colour{id}")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<Colour> getById(@PathVariable Long id) {
@@ -34,6 +37,7 @@ public class ColourController {
         return new ResponseEntity<>(colour, HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete Colour by ID")
     @DeleteMapping("/deleteColour/{id}")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<MessageResponse> deleteColourById(@PathVariable Long id) {
@@ -44,6 +48,7 @@ public class ColourController {
         }
     }
 
+    @Operation(summary = "Create Colour")
     @PostMapping("/postColour")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<Colour> addNewColour(@Valid @RequestBody Colour colour) {
@@ -51,6 +56,7 @@ public class ColourController {
         return new ResponseEntity<>(savedColour, HttpStatus.OK);
     }
 
+    @Operation(summary = "Update a Colour Object")
     @PutMapping("/updateColour/{id}")
     @RolesAllowed({Roles.Admin, Roles.Update})
     public ResponseEntity<Colour> updateColourById(@Valid @RequestBody Colour colour, @PathVariable Long id) {

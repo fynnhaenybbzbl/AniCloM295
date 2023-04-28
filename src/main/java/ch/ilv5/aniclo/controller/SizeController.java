@@ -4,6 +4,7 @@ import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Size;
 import ch.ilv5.aniclo.security.Roles;
 import ch.ilv5.aniclo.service.SizeService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ public class SizeController {
     @Autowired
     private SizeService sizeService;
 
+    @Operation(summary = "Get all Size")
     @GetMapping("/size")
     @RolesAllowed(Roles.Read)
 
@@ -29,13 +31,15 @@ public class SizeController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/size{id}")
+    @Operation(summary = "Get Size by ID")
+    @GetMapping("/size/{id}")
     @RolesAllowed(Roles.Read)
     public ResponseEntity<Size> getById(@PathVariable Long id) {
         Size size = sizeService.getById(id);
         return new ResponseEntity<>(size, HttpStatus.OK);
     }
 
+    @Operation(summary = "Delete Size by ID")
     @DeleteMapping("/deleteSize/{id}")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<MessageResponse> deleteSizeById(@PathVariable Long id) {
@@ -46,6 +50,7 @@ public class SizeController {
         }
     }
 
+    @Operation(summary = "Create Size")
     @PostMapping("/postSize")
     @RolesAllowed(Roles.Admin)
     public ResponseEntity<Size> addNewSize(@Valid @RequestBody Size size) {
@@ -53,6 +58,7 @@ public class SizeController {
         return new ResponseEntity<>(savedSize, HttpStatus.OK);
     }
 
+    @Operation(summary = "Update a Size Object")
     @PutMapping("/updateSize/{id}")
     @RolesAllowed({Roles.Admin, Roles.Update})
     public ResponseEntity<Size> updateSizeById(@Valid @RequestBody Size size, @PathVariable Long id) {
