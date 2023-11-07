@@ -21,4 +21,12 @@ public class Colour {
     @NotEmpty
     private String farbe;
 
+    public Colour(long id, String farbe) {
+        this.id = id;
+        this.farbe = farbe;
+    }
+
+    public Colour() {
+
+    }
 }

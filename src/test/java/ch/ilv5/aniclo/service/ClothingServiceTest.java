@@ -1,0 +1,127 @@
+package ch.ilv5.aniclo.service;
+
+import ch.ilv5.aniclo.base.MessageResponse;
+import ch.ilv5.aniclo.model.Clothing;
+import ch.ilv5.aniclo.model.Colour;
+import ch.ilv5.aniclo.model.Places;
+import ch.ilv5.aniclo.repository.ClothingRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+class ClothingServiceTest {
+    @Mock
+    private ClothingRepository clothingRepository;
+
+    @InjectMocks
+    private ClothingService clothingService;
+
+
+    @Test
+    public void testGetAll() {
+        // Arrange
+        List<Clothing> expectedClothingList = new ArrayList<>();
+        expectedClothingList.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        expectedClothingList.add(new Clothing(2L, "Pants", "Adidas", 49, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        Mockito.when(clothingRepository.findAll()).thenReturn(expectedClothingList);
+
+        // Act
+        List<Clothing> actualClothingList = clothingService.getAll();
+
+        // Assert
+        assertEquals(expectedClothingList, actualClothingList);
+    }
+
+    @Test
+    public void testGetById() {
+        // Arrange
+        Long id = 1L;
+        Clothing expectedClothing = new Clothing(id, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Mockito.when(clothingRepository.findById(id)).thenReturn(Optional.of(expectedClothing));
+
+        // Act
+        Clothing actualClothing = clothingService.getById(id);
+
+        // Assert
+        assertEquals(expectedClothing, actualClothing);
+    }
+
+    @Test
+    public void testGetByIdNotFound() { //Here
+        Long id = 1L;
+        Mockito.when(clothingRepository.findById(id)).thenThrow(EntityNotFoundException.class);
+
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> clothingService.getById(id));
+
+        assertNull(exception.getMessage());
+    }
+
+    @Test
+    public void testDeleteClothingById() {
+        // Arrange
+        Long id = 1L;
+
+        // Act
+        MessageResponse messageResponse = clothingService.deleteClothingById(id);
+
+        // Assert
+        Mockito.verify(clothingRepository, Mockito.times(1)).deleteById(id);
+        assertEquals("Clothing " + id + " gelöscht", messageResponse.getMessage());
+    }
+
+    @Test
+    public void testInsertClothing() {
+        // Arrange
+        Clothing clothing = new Clothing(null, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Clothing expectedClothing = new Clothing(1L, "Shirt", "Nike", 29, new Colour(2L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Mockito.when(clothingRepository.save(clothing)).thenReturn(expectedClothing);
+
+        // Act
+        Clothing actualClothing = clothingService.insertClothing(clothing);
+
+        // Assert
+        assertEquals(expectedClothing, actualClothing);
+    }
+
+    @Test
+    public void testUpdateClothingById() {
+        // Arrange
+        Long id = 1L;
+        Clothing clothing = new Clothing(id, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Clothing expectedClothing = new Clothing(id, "T-Shirt", "Adidas", 39, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Mockito.when(clothingRepository.findById(id)).thenReturn(Optional.of(clothing));
+        Mockito.when(clothingRepository.save(clothing)).thenReturn(expectedClothing);
+
+        // Act
+        Clothing actualClothing = clothingService.updateClothingById(expectedClothing, id);
+
+        // Assert
+        assertEquals(expectedClothing, actualClothing);
+    }
+
+    @Test
+    public void testUpdateClothingByIdNotFound() {
+        // Arrange
+        Long id = 1L;
+        Clothing expectedClothing = new Clothing(id, "T-Shirt", "Adidas", 39, new Colour(1L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        Mockito.when(clothingRepository.findById(id)).thenReturn(Optional.empty());
+        Mockito.when(clothingRepository.save(expectedClothing)).thenReturn(expectedClothing);
+
+        // Act
+        Clothing actualClothing = clothingService.updateClothingById(expectedClothing, id);
+
+        // Assert
+        assertEquals(expectedClothing, actualClothing);
+    }
+}
