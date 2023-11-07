@@ -23,6 +23,8 @@ public class SizeService {
                 .orElseThrow(() -> new EntityNotFoundException());
     }
 
+
+
     public MessageResponse deleteSize(Long id) {
         sizeRepository.deleteById(id);
         return new MessageResponse("Size " + id + " deleted");
