@@ -4,15 +4,17 @@ import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Places;
 import ch.ilv5.aniclo.repository.PlacesRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PlacesService {
-    @Autowired
     private PlacesRepository placesRepository;
+
+    public PlacesService(PlacesRepository placesRepository) {
+        this.placesRepository = placesRepository;
+    }
 
     public List<Places> getAll() {
         return placesRepository.findAll();

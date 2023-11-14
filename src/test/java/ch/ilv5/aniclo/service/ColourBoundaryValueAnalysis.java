@@ -2,7 +2,6 @@ package ch.ilv5.aniclo.service;
 
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.repository.ColourRepository;
-import ch.ilv5.aniclo.service.ColourService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ColourServiceTest {
+public class ColourBoundaryValueAnalysis {
 
     @Autowired
     private ColourService colourService;
