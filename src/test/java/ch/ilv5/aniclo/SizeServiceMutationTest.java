@@ -45,12 +45,6 @@ public class SizeServiceMutationTest {
 
     @Test
     public void getById_shouldReturnExpectedResult() {
-        // Arrange
-    //    Size size = new Size();
-      //  size.setId(1L);
-        //  size.setEu(12);
-       // size.setFra(12);
-       // size.setUsa("Medium");
         Mockito.when(sizeRepository.findById(1L)).thenReturn(Optional.of(new Size(1L, 12, 12, "Medium")));
 
         // Act
