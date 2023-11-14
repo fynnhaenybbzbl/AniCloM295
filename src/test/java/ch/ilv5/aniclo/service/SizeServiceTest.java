@@ -1,4 +1,4 @@
-package ch.ilv5.aniclo;
+package ch.ilv5.aniclo.service;
 
 import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Size;

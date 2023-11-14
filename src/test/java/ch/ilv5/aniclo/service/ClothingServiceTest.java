@@ -47,6 +47,11 @@ class ClothingServiceTest {
 
         // Assert
         assertEquals(expectedClothingList, actualClothingList);
+        if (expectedClothingList.equals(actualClothingList)) {
+            System.out.println("Clothing " + expectedClothingList + " found");
+        } else {
+            System.out.println("Clothing " + expectedClothingList + " not found");
+        }
     }
 
     @Test
@@ -65,6 +70,11 @@ class ClothingServiceTest {
 
         // Assert
         assertEquals(expectedList, actualClothingList);
+        if (expectedList.equals(actualClothingList)) {
+            System.out.println("Clothing " + expectedList + " found");
+        } else {
+            System.out.println("Clothing " + expectedList + " not found");
+        }
     }
 
     @Test
@@ -81,6 +91,11 @@ class ClothingServiceTest {
 
         // Assert
         assertEquals(expectedClothing, actualClothing);
+        if (expectedClothing.equals(actualClothing)) {
+            System.out.println("Clothing " + expectedClothing + " found");
+        } else {
+            System.out.println("Clothing " + expectedClothing + " not found");
+        }
     }
 
     @Test
@@ -91,6 +106,11 @@ class ClothingServiceTest {
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> clothingService.getById(id));
 
         assertNull(exception.getMessage());
+        if (exception.getMessage() == null) {
+            System.out.println("Clothing " + id + " not found");
+        } else {
+            System.out.println("Clothing " + id + " found");
+        }
     }
 
     @Test
@@ -104,6 +124,11 @@ class ClothingServiceTest {
         // Assert
         verify(clothingRepository, times(1)).deleteById(id);
         assertEquals("Clothing " + id + " gelöscht", messageResponse.getMessage());
+        if (messageResponse.getMessage().equals("Clothing " + id + " gelöscht")) {
+            System.out.println("Clothing " + id + " deleted");
+        } else {
+            System.out.println("Clothing " + id + " not deleted");
+        }
     }
 
     @Test
@@ -123,6 +148,11 @@ class ClothingServiceTest {
 
         // Assert
         assertEquals(expectedClothing, actualClothing);
+        if (expectedClothing.equals(actualClothing)) {
+            System.out.println("Clothing " + expectedClothing + " inserted");
+        } else {
+            System.out.println("Clothing " + expectedClothing + " not inserted");
+        }
     }
 
     @Test
@@ -144,5 +174,10 @@ class ClothingServiceTest {
 
         // Assert
         assertEquals(expectedClothing, actualClothing);
+        if (expectedClothing.equals(actualClothing)) {
+            System.out.println("Clothing " + expectedClothing + " updated");
+        } else {
+            System.out.println("Clothing " + expectedClothing + " not updated");
+        }
     }
 }

@@ -1,4 +1,4 @@
-package ch.ilv5.aniclo;
+package ch.ilv5.aniclo.service;
 
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.repository.ColourRepository;
