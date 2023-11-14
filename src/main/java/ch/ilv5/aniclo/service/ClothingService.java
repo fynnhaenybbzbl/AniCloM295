@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,15 @@ public class ClothingService {
     }
 
     public List<Clothing> getWithColor(String color) {
-        return null;
+        List<Clothing> clothings = getAll();
+
+        List<Clothing> response = new ArrayList<>();
+        for (Clothing clothing : clothings) {
+            if (clothing.getColour().getFarbe().equals(color.toLowerCase())) {
+                response.add(clothing);
+            }
+        }
+        return response;
     }
 
     public Clothing getById(Long id) {

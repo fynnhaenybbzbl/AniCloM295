@@ -75,6 +75,16 @@ class ClothingServiceTest {
         } else {
             System.out.println("Clothing " + expectedList + " not found");
         }
+
+        List<Clothing> actualClothingListEmpty = clothingService.getWithColor("Withe");
+
+        // Assert
+        assertEquals(new ArrayList<>(), actualClothingListEmpty);
+        if (actualClothingListEmpty.equals(new ArrayList<>())) {
+            System.out.println("Clothing " + expectedList + " found");
+        } else {
+            System.out.println("Clothing " + expectedList + " not found");
+        }
     }
 
     @Test
