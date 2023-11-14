@@ -11,8 +11,12 @@ import java.util.List;
 
 @Service
 public class SizeService {
-    @Autowired
+
     private SizeRepository sizeRepository;
+
+    public SizeService(SizeRepository sizeRepository) {
+        this.sizeRepository = sizeRepository;
+    }
 
     public List<Size> getAll() {
         return sizeRepository.findAll();
@@ -22,8 +26,6 @@ public class SizeService {
         return sizeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException());
     }
-
-
 
     public MessageResponse deleteSize(Long id) {
         sizeRepository.deleteById(id);
