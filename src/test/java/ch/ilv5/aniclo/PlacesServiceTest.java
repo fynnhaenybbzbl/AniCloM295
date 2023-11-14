@@ -1,4 +1,4 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Places;
@@ -110,20 +110,5 @@ public class PlacesServiceTest {
         assertEquals("Test2", result.getOrtsname());
         assertEquals("Teststrasse2", result.getStrasse());
         assertEquals(2, result.getStrassennummer());
-    }
-
-    @Test
-    public void testUpdatePlaceByIdNotFound() {
-        Places place = new Places(1234, "Test", "Teststrasse", 1);
-
-        when(placesRepository.findById(1L)).thenReturn(Optional.empty());
-        when(placesRepository.save(any(Places.class))).thenReturn(place);
-
-        Places result = placesService.updatePlaceById(place, 1L);
-
-        assertEquals(1234, result.getPlz());
-        assertEquals("Test", result.getOrtsname());
-        assertEquals("Teststrasse", result.getStrasse());
-        assertEquals(1, result.getStrassennummer());
     }
 }

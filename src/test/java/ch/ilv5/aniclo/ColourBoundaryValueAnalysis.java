@@ -1,7 +1,8 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.repository.ColourRepository;
+import ch.ilv5.aniclo.service.ColourService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

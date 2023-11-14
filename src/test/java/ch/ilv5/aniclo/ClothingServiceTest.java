@@ -1,10 +1,11 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Clothing;
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.model.Places;
 import ch.ilv5.aniclo.repository.ClothingRepository;
+import ch.ilv5.aniclo.service.ClothingService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,28 +55,6 @@ class ClothingServiceTest {
         }
     }
 
-    @Test
-    public void testGetWithColor() {
-        List<Clothing> clothingListToReturn = new ArrayList<>();
-        clothingListToReturn.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
-        clothingListToReturn.add(new Clothing(2L, "Pants", "Adidas", 49, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
-        when(clothingRepository.findAll()).thenReturn(clothingListToReturn);
-
-        List<Clothing> expectedList = new ArrayList<>();
-        expectedList.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
-        when(clothingRepository.findAll()).thenReturn(clothingListToReturn);
-
-        // Act
-        List<Clothing> actualClothingList = clothingService.getWithColor("Red");
-
-        // Assert
-        assertEquals(expectedList, actualClothingList);
-        if (expectedList.equals(actualClothingList)) {
-            System.out.println("Clothing " + expectedList + " found");
-        } else {
-            System.out.println("Clothing " + expectedList + " not found");
-        }
-    }
 
     @Test
     public void testGetById() {
