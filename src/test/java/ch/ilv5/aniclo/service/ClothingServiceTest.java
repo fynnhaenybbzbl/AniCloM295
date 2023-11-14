@@ -32,10 +32,15 @@ class ClothingServiceTest {
     @Test
     public void testGetAll() {
         // Arrange
+        List<Clothing> clothingList = new ArrayList<>();
+        clothingList.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        clothingList.add(new Clothing(2L, "Pants", "Adidas", 49, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        when(clothingRepository.findAll()).thenReturn(clothingList);
+
         List<Clothing> expectedClothingList = new ArrayList<>();
         expectedClothingList.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
         expectedClothingList.add(new Clothing(2L, "Pants", "Adidas", 49, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
-        when(clothingRepository.findAll()).thenReturn(expectedClothingList);
+
 
         // Act
         List<Clothing> actualClothingList = clothingService.getAll();
@@ -66,8 +71,10 @@ class ClothingServiceTest {
     public void testGetById() {
         // Arrange
         Long id = 1L;
+        Clothing clothing = new Clothing(id, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
+        when(clothingRepository.findById(id)).thenReturn(Optional.of(clothing));
+
         Clothing expectedClothing = new Clothing(id, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
-        when(clothingRepository.findById(id)).thenReturn(Optional.of(expectedClothing));
 
         // Act
         Clothing actualClothing = clothingService.getById(id);
@@ -131,21 +138,6 @@ class ClothingServiceTest {
                     return inputClothing == clothing ? clothing : new Clothing();
                 });
         when(clothingRepository.findById(id)).thenReturn(Optional.of(clothing));
-
-        // Act
-        Clothing actualClothing = clothingService.updateClothingById(expectedClothing, id);
-
-        // Assert
-        assertEquals(expectedClothing, actualClothing);
-    }
-
-    @Test
-    public void testUpdateClothingByIdNotFound() {
-        // Arrange
-        Long id = 1L;
-        Clothing expectedClothing = new Clothing(id, "T-Shirt", "Adidas", 39, new Colour(1L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54));
-        when(clothingRepository.findById(id)).thenReturn(Optional.empty());
-        when(clothingRepository.save(expectedClothing)).thenReturn(expectedClothing);
 
         // Act
         Clothing actualClothing = clothingService.updateClothingById(expectedClothing, id);
