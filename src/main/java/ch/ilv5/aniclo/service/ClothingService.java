@@ -18,6 +18,10 @@ public class ClothingService {
         return clothingRepository.findAll();
     }
 
+    public List<Clothing> getWithColor(String color) {
+        return null;
+    }
+
     public Clothing getById(Long id) {
         return clothingRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException());

@@ -33,4 +33,18 @@ public class Clothing {
     @ManyToOne(optional = false)
     @JoinColumn(name = "places_id")
     private Places places;
+
+    public Clothing() {
+
+    }
+
+    public Clothing(Long id, String name, String marke, int preis, Colour colour, Places places) {
+        this.id = id;
+        this.name = name;
+        this.marke = marke;
+        this.preis = preis;
+        this.colour = colour;
+        this.places = places;
+
+    }
 }

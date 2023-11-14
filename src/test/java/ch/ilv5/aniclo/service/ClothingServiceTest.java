@@ -45,6 +45,24 @@ class ClothingServiceTest {
     }
 
     @Test
+    public void testGetWithColor() {
+        List<Clothing> clothingListToReturn = new ArrayList<>();
+        clothingListToReturn.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        clothingListToReturn.add(new Clothing(2L, "Pants", "Adidas", 49, new Colour(2L, "blue"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        when(clothingRepository.findAll()).thenReturn(clothingListToReturn);
+
+        List<Clothing> expectedList = new ArrayList<>();
+        expectedList.add(new Clothing(1L, "Shirt", "Nike", 29, new Colour(1L, "red"), new Places(4651, "Brugllingen", "Bleustrasse", 54)));
+        when(clothingRepository.findAll()).thenReturn(clothingListToReturn);
+
+        // Act
+        List<Clothing> actualClothingList = clothingService.getWithColor("Red");
+
+        // Assert
+        assertEquals(expectedList, actualClothingList);
+    }
+
+    @Test
     public void testGetById() {
         // Arrange
         Long id = 1L;
