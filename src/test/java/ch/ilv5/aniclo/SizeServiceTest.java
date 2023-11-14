@@ -1,9 +1,10 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Size;
 import ch.ilv5.aniclo.repository.SizeRepository;
 import ch.ilv5.aniclo.service.SizeService;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class SizeServiceTest {
@@ -67,6 +69,13 @@ public class SizeServiceTest {
             System.out.println("Size " + size + " not found");
         }
         verify(sizeRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    public void testGetByIdNotFound() {
+        when(sizeRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> sizeService.getById(1L));
     }
 
     @Test

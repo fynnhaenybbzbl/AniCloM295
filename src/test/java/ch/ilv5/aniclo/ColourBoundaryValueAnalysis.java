@@ -1,4 +1,4 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.repository.ColourRepository;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ColourServiceTest {
+public class ColourBoundaryValueAnalysis {
 
     @Autowired
     private ColourService colourService;

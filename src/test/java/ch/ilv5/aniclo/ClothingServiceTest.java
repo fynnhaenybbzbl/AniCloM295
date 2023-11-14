@@ -1,10 +1,11 @@
-package ch.ilv5.aniclo.service;
+package ch.ilv5.aniclo;
 
 import ch.ilv5.aniclo.base.MessageResponse;
 import ch.ilv5.aniclo.model.Clothing;
 import ch.ilv5.aniclo.model.Colour;
 import ch.ilv5.aniclo.model.Places;
 import ch.ilv5.aniclo.repository.ClothingRepository;
+import ch.ilv5.aniclo.service.ClothingService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
