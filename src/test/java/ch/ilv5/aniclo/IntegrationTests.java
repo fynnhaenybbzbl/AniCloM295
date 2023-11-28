@@ -78,7 +78,9 @@ public class IntegrationTests {
     }
 
     @Test
+    @DisplayName("Falsy Request Test")
     public void testFalsyRequest() {
         assertFalse(this.placesRepository.findById(0L).isPresent());
+        System.out.println("Objekt: " + placesRepository.findById(0L) + " wurde nicht gefunden");
     }
 }
