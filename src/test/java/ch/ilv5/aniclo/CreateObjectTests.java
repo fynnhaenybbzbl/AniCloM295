@@ -66,4 +66,9 @@ public class CreateObjectTests {
         result.ifPresent(places -> assertEquals(place.getOrtsname(), places.getOrtsname()));
 
     }
+
+    @Test
+    public void testFalsyRequest() {
+        assertFalse(this.placesRepository.findById(0L).isPresent());
+    }
 }
